@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmrv37jlurep5"]
+
+[ext_resource type="PackedScene" uid="uid://p8bj1dik1xg2" path="res://Scene/player/player.tscn" id="1_gms15"]
+[ext_resource type="PackedScene" uid="uid://c1nxhy0wy3md7" path="res://Scene/pol/pol.tscn" id="1_ps21q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b4ix8"]
+
+[sub_resource type="Sky" id="Sky_be24c"]
+sky_material = SubResource("ProceduralSkyMaterial_b4ix8")
+
+[sub_resource type="Environment" id="Environment_gms15"]
+background_mode = 2
+sky = SubResource("Sky_be24c")
+tonemap_mode = 2
+
+[sub_resource type="GDScript" id="GDScript_ynx3k"]
+
+[node name="Game" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gms15")
+
+[node name="Player" parent="WorldEnvironment" instance=ExtResource("1_gms15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64215, 0)
+
+[node name="Pol" parent="WorldEnvironment" instance=ExtResource("1_ps21q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0664874, 0)
+script = SubResource("GDScript_ynx3k")
