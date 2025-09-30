@@ -1,13 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://p8bj1dik1xg2"]
+[gd_scene load_steps=7 format=3 uid="uid://p8bj1dik1xg2"]
 
-[ext_resource type="Script" uid="uid://dtgq6biihhprd" path="res://player.gd" id="1_ogcec"]
+[ext_resource type="Script" uid="uid://b8dc72jw0f0wa" path="res://Scene/player/playerRotate.gd" id="1_ogcec"]
+[ext_resource type="Texture2D" uid="uid://du6fin1evtgfn" path="res://icon.svg" id="2_ubwr7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogcec"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogcec"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("2_ubwr7")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ogcec"]
+material = SubResource("StandardMaterial3D_ogcec")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ogcec"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ogcec")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ogcec")
+debug_color = Color(0.714162, 0.390218, 0.739245, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+process_mode = 1
+mesh = SubResource("CapsuleMesh_ogcec")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.699)
+visible = false
+mesh = SubResource("SphereMesh_ogcec")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.724377, 0.689405, 0, -0.689405, 0.724377, 0, 1.93969, 2.36032)

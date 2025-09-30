@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://p8bj1dik1xg2"]
+
+[ext_resource type="Script" uid="uid://b8dc72jw0f0wa" path="res://Scene/player/playerRotate.gd" id="1_ogcec"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogcec"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogcec"]
+albedo_color = Color(0.21742, 0.751957, 0.183223, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ogcec"]
+material = SubResource("StandardMaterial3D_ogcec")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_ogcec")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ogcec")
+debug_color = Color(0.714162, 0.390218, 0.739245, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_ogcec")
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 0.949118, 0.31492, 0, -0.31492, 0.949118, 0, 1.73025, 2.40383)
